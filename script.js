@@ -8,28 +8,26 @@ const resultatEuro = document.querySelector('#resultatEuro');
 const resultatDollar = document.querySelector('#resultatDollar');
 const resultatLivres = document.querySelector('#resultatLivres');
 
+// Function to be used for each currency (refactoring method):
+const API_URL = 'https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=eur,usd,gbp';
 
-coursEuro.addEventListener('click', ()=>{
-    fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=eur,usd,gbp')
-        .then(rep => rep.json())
-        .then(data =>{
-            const eur = data.bitcoin.eur;
-            resultatEuro.innerHTML = `<p> ${eur} €</p>`
+function fetchAndDisplay(currency, resultElement, symbol) {
+    fetch(API_URL)
+        .then(res => res.json())
+        .then(data => {
+            const value = data.bitcoin[currency];
+            resultElement.innerHTML = `<p>${value} ${symbol}</p>`;
         });
+}
+// Euros €
+coursEuro.addEventListener('click', () => {
+    fetchAndDisplay('eur', resultatEuro, '€');
 });
-coursDollar.addEventListener('click', ()=>{
-    fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=eur,usd,gbp')
-        .then(rep => rep.json())
-        .then(data =>{
-            const usd = data.bitcoin.usd;
-            resultatDollar.innerHTML = `<p> ${usd} $</p>`
-        });
+// Dollar $
+coursDollar.addEventListener('click', () => {
+    fetchAndDisplay('usd', resultatDollar, '$');
 });
-coursLivres.addEventListener('click', ()=>{
-    fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=eur,usd,gbp')
-        .then(rep => rep.json())
-        .then(data =>{
-            const gbp = data.bitcoin.gbp;
-            resultatLivres.innerHTML = `<p> ${gbp} £</p>`
-        });
+// Pound £
+coursLivres.addEventListener('click', () => {
+    fetchAndDisplay('gbp', resultatLivres, '£');
 });
