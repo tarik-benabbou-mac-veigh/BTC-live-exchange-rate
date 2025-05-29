@@ -50,7 +50,7 @@ button:hover{
     background-color: #f7941ac0;
 }
 
-.coursAffichage{
+.coursAffichage, .tokenAffichage{
     color: rgb(24, 222, 24);
     font-weight: bold;
     font-size: 1em;

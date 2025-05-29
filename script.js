@@ -10,6 +10,9 @@ const coursLivresEth = document.querySelector('#coursLivresEth');
 const coursEuroAda = document.querySelector('#coursEuroAda');
 const coursDollarAda = document.querySelector('#coursDollarAda');
 const coursLivresAda = document.querySelector('#coursLivresAda');
+// Name of BTC token button :
+const tokenBtc = document.querySelector('#tokenBtc');
+
 
 // Name of each result appearing for BTC :
 const resultatEuro = document.querySelector('#resultatEuro');
@@ -24,9 +27,15 @@ const resultatEuroAda = document.querySelector('#resultatEuroAda');
 const resultatDollarAda = document.querySelector('#resultatDollarAda');
 const resultatLivresAda = document.querySelector('#resultatLivresAda');
 
+// Name of the result token BTC :
+const resultatTokenBtc = document.querySelector('#resultatTokenBtc');
+
+
 // Links for API BTC, ETH, and ADA : 
 const API_URL_BTC = 'https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=eur,usd,gbp';
 const API_URL_ETH_ADA = 'https://api.coingecko.com/api/v3/simple/price?ids=ethereum,cardano&vs_currencies=eur,usd,gbp';
+// Links for the amount of Tokens : 
+const API_TOKEN_BTC = 'https://api.coingecko.com/api/v3/coins/bitcoin';
 
 // Function to be used for each currency BTC (refactoring method) :
 function fetchAndDisplayBtc(currency, resultElement, symbol) {
@@ -92,4 +101,19 @@ coursDollarAda.addEventListener('click', () => {
 // Pound £ ADA :
 coursLivresAda.addEventListener('click', () => {
     fetchAndDisplayAda('gbp', resultatLivresAda, '£');
+});
+
+
+// Function for BTC token :
+function fetchTokenBtc(resultElement){
+    fetch(API_TOKEN_BTC)
+        .then(res =>res.json())
+        .then(data =>{
+            const value = data.market_data.circulating_supply;
+            resultElement.innerHTML = `<p>${value} tokens en circulations</p>`;
+        });
+};
+
+tokenBtc.addEventListener('click', ()=>{
+    fetchTokenBtc(resultatTokenBtc);
 });
