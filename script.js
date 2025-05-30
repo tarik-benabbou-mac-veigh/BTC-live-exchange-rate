@@ -27,8 +27,10 @@ const resultatEuroAda = document.querySelector('#resultatEuroAda');
 const resultatDollarAda = document.querySelector('#resultatDollarAda');
 const resultatLivresAda = document.querySelector('#resultatLivresAda');
 
-// Name of the result token BTC :
+// Name of the result token :
 const resultatTokenBtc = document.querySelector('#resultatTokenBtc');
+const resultatTokenEth = document.querySelector('#resultatTokenEth');
+const resultatTokenAda = document.querySelector('#resultatTokenAda');
 
 
 // Links for API BTC, ETH, and ADA : 
@@ -36,6 +38,8 @@ const API_URL_BTC = 'https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&v
 const API_URL_ETH_ADA = 'https://api.coingecko.com/api/v3/simple/price?ids=ethereum,cardano&vs_currencies=eur,usd,gbp';
 // Links for the amount of Tokens : 
 const API_TOKEN_BTC = 'https://api.coingecko.com/api/v3/coins/bitcoin';
+const API_TOKEN_ETH = 'https://api.coingecko.com/api/v3/coins/ethereum';
+const API_TOKEN_ADA = 'https://api.coingecko.com/api/v3/coins/cardano';
 
 // Function to be used for each currency BTC (refactoring method) :
 function fetchAndDisplayBtc(currency, resultElement, symbol) {
@@ -110,10 +114,35 @@ function fetchTokenBtc(resultElement){
         .then(res =>res.json())
         .then(data =>{
             const value = data.market_data.circulating_supply;
-            resultElement.innerHTML = `<p>${value} tokens en circulations</p>`;
+            resultElement.innerHTML = `<p>${value} tokens</p>`;
         });
 };
-
 tokenBtc.addEventListener('click', ()=>{
     fetchTokenBtc(resultatTokenBtc);
+});
+
+// Function for ETH token :
+function fetchTokenEth(resultElement){
+    fetch(API_TOKEN_ETH)
+        .then(res =>res.json())
+        .then(data =>{
+            const value = data.market_data.circulating_supply;
+            resultElement.innerHTML = `<p>${value} tokens</p>`;
+        });
+};
+tokenEth.addEventListener('click', ()=>{
+    fetchTokenEth(resultatTokenEth);
+});
+
+// Function for ADA token :
+function fetchTokenAda(resultElement){
+    fetch(API_TOKEN_ADA)
+        .then(res =>res.json())
+        .then(data =>{
+            const value = data.market_data.circulating_supply;
+            resultElement.innerHTML = `<p>${value} tokens</p>`;
+        });
+};
+tokenAda.addEventListener('click', ()=>{
+    fetchTokenAda(resultatTokenAda);
 });
