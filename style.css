@@ -1,57 +1,59 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+
 body {
-    font-family: "Inter", sans-serif;
-    font-optical-sizing: auto;
-    font-weight: weight;
-    font-style: normal;
-    background-color: rgba(0, 0, 0, 0.811);
-}
-
-h1, h2, h3{
-    color: aliceblue;
+    font-family: 'Inter', sans-serif;
+    background: #121212;
+    color: #fff;
+    margin: 0;
+    padding: 0;
     text-align: center;
-    width: 50%;
-    margin: auto;
-    margin-bottom: 1em;
 }
 
-main{
+h1, h2, h3 {
+    margin: 1em auto;
+    max-width: 90%;
+}
+
+main {
     display: flex;
-    flex-flow: column wrap;
+    flex-direction: column;
+    align-items: center;
+    gap: 2em;
+    padding: 1em;
+}
+
+.sectionBoutons, .boutonToken {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1em;
+}
+
+.bouton {
+    display: flex;
+    flex-direction: column;
     align-items: center;
 }
 
-.sectionBoutons{
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: space-evenly;
-    width: 50%;
-    margin-bottom: 2em;
-}
-
-.bouton{
-    display: flex;
-    flex-flow: column wrap;
-    align-items: center;
-}
-
-button{
-    background-color: #f7931a;
+button {
+    background: #f7931a;
     border: none;
-    border-radius: 1em;
-    padding: 15px 20px;
-    color: aliceblue;
-    font-weight: bold;
+    border-radius: 12px;
+    padding: 0.75em 1.5em;
+    color: white;
+    font-weight: 600;
     font-size: 1em;
-    margin-bottom: 0.5em;
-}
-button:hover{
-    cursor: pointer;
-    background-color: #f7941ac0;
+    transition: background 0.3s;
 }
 
-.coursAffichage, .tokenAffichage{
-    color: rgb(24, 222, 24);
+button:hover {
+    background: #ffa640;
+    cursor: pointer;
+}
+
+.coursAffichage, .tokenAffichage {
+    margin-top: 0.5em;
+    color: #4caf50;
     font-weight: bold;
     font-size: 1em;
 }
